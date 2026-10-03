@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berber Kemal — Mersin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b22;
+    --cream:#f4efe4;
+    --brass:#b8823c;
+    --brass-dark:#8c5f26;
+    --deep:#20362a;
+    --line:#c9bfa5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.disp{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  /* striped divider — signature element, evokes barber pole without being literal */
+  .stripe{
+    height:10px;
+    background:repeating-linear-gradient(135deg,
+      var(--deep) 0 14px,
+      var(--brass) 14px 28px,
+      var(--cream) 28px 42px);
+  }
+
+  header{
+    padding:28px 6vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--deep);
+    color:var(--cream);
+  }
+  header .logo{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  header .logo span{color:var(--brass);}
+  nav a{
+    color:var(--cream);
+    text-decoration:none;
+    margin-left:28px;
+    font-size:14px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    opacity:0.85;
+    transition:opacity .2s;
+  }
+  nav a:hover{opacity:1;}
+
+  .hero{
+    background:var(--deep);
+    color:var(--cream);
+    padding:80px 6vw 100px;
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero .eyebrow{
+    color:var(--brass);
+    text-transform:uppercase;
+    letter-spacing:0.15em;
+    font-size:13px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(38px,5.5vw,68px);
+    line-height:1.02;
+    margin-bottom:22px;
+  }
+  .hero p{
+    font-size:17px;
+    line-height:1.6;
+    max-width:46ch;
+    color:#d8d3c2;
+    margin-bottom:32px;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--brass);
+    color:var(--deep);
+    padding:14px 30px;
+    border-radius:2px;
+    font-weight:600;
+    text-decoration:none;
+    letter-spacing:0.02em;
+    transition:transform .2s, background .2s;
+  }
+  .btn:hover{background:#cf9950;transform:translateY(-2px);}
+
+  .hero-clock{
+    background:var(--cream);
+    color:var(--ink);
+    padding:28px;
+    border-radius:4px;
+    justify-self:end;
+    width:100%;
+    max-width:280px;
+  }
+  .hero-clock .label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--brass-dark);
+    margin-bottom:10px;
+  }
+  .hero-clock .status{
+    font-family:'Fraunces',serif;
+    font-size:26px;
+    margin-bottom:8px;
+  }
+  .hero-clock .hours{font-size:13px;color:#5a5245;line-height:1.6;}
+
+  section{padding:80px 6vw;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+  }
+  .section-head h2{font-size:clamp(26px,3vw,38px);}
+  .section-head .num{
+    font-family:'Fraunces',serif;
+    color:var(--brass-dark);
+    font-size:14px;
+  }
+
+  .services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service{
+    background:var(--cream);
+    padding:30px 26px;
+  }
+  .service .price{
+    font-family:'Fraunces',serif;
+    font-size:28px;
+    color:var(--brass-dark);
+    margin:10px 0 8px;
+  }
+  .service h3{font-size:17px;margin-bottom:4px;}
+  .service p{font-size:14px;color:#5a5245;line-height:1.5;}
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .gallery div{
+    aspect-ratio:1;
+    background:var(--deep);
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--brass);
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    opacity:0.85;
+  }
+
+  .about{
+    background:var(--deep);
+    color:var(--cream);
+  }
+  .about .section-head{border-bottom-color:#3a4d3f;}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .about p{color:#d8d3c2;line-height:1.75;font-size:15.5px;margin-bottom:16px;}
+  .stat-row{display:flex;gap:40px;margin-top:20px;}
+  .stat .n{font-family:'Fraunces',serif;font-size:38px;color:var(--brass);}
+  .stat .l{font-size:13px;color:#a9a290;text-transform:uppercase;letter-spacing:0.06em;}
+
+  footer{
+    background:var(--ink);
+    color:#cfc9b8;
+    padding:50px 6vw 30px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+    font-size:14px;
+  }
+  footer .col h4{
+    font-family:'Fraunces',serif;
+    color:var(--cream);
+    margin-bottom:12px;
+    font-size:16px;
+  }
+  footer .col p, footer .col a{
+    color:#a9a290;
+    text-decoration:none;
+    display:block;
+    line-height:1.9;
+  }
+
+  @media(max-width:800px){
+    .hero{grid-template-columns:1fr;}
+    .hero-clock{justify-self:start;}
+    .about-grid{grid-template-columns:1fr;}
+    nav{display:none;}
+    .gallery{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BERBER <span>KEMAL</span></div>
+  <nav>
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+</header>
+<div class="stripe"></div>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Mersin, Yenişehir — 1998'den beri</div>
+    <h1>Ustalık işi, <br>randevu ister.</h1>
+    <p>Klasik tıraş, modern kesim. Üç kuşaktır aynı sokakta, aynı özenle hizmet veriyoruz.</p>
+    <a class="btn" href="#iletisim">Randevu Al</a>
+  </div>
+  <div class="hero-clock">
+    <div class="label">Şu an</div>
+    <div class="status" id="durum">—</div>
+    <div class="hours">
+      Pzt–Cmt: 09:00–20:00<br>
+      Pazar: Kapalı
+    </div>
+  </div>
+</section>
+
+<section id="hizmetler">
+  <div class="section-head">
+    <h2>Hizmetler</h2>
+    <div class="num">01</div>
+  </div>
+  <div class="services">
+    <div class="service">
+      <h3>Saç Kesimi</h3>
+      <div class="price">₺200</div>
+      <p>Yıkama ve fön dahil, her yüz tipine uygun kesim.</p>
+    </div>
+    <div class="service">
+      <h3>Sakal Tıraşı</h3>
+      <div class="price">₺150</div>
+      <p>Sıcak havlu ve jilet ile klasik usul tıraş.</p>
+    </div>
+    <div class="service">
+      <h3>Saç + Sakal</h3>
+      <div class="price">₺320</div>
+      <p>İki hizmet bir arada, indirimli paket.</p>
+    </div>
+    <div class="service">
+      <h3>Çocuk Kesimi</h3>
+      <div class="price">₺150</div>
+      <p>12 yaş altı için özel fiyat.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="hakkimizda">
+  <div class="section-head">
+    <h2>Hakkımızda</h2>
+    <div class="num">02</div>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>Kemal Usta, mesleğe 16 yaşında babasının yanında çırak olarak başladı. Bugün aynı dükkanda, aynı titizlikle müşterilerini ağırlıyor.</p>
+      <p>Mahalle esnafı olarak, her müşteriyi ismiyle tanımaktan gurur duyuyoruz.</p>
+    </div>
+    <div>
+      <div class="stat-row">
+        <div class="stat"><div class="n">26</div><div class="l">Yıllık Tecrübe</div></div>
+        <div class="stat"><div class="n">1200+</div><div class="l">Sabit Müşteri</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Dükkandan Kareler</h2>
+    <div class="num">03</div>
+  </div>
+  <div class="gallery">
+    <div>Fotoğraf 1</div>
+    <div>Fotoğraf 2</div>
+    <div>Fotoğraf 3</div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<footer id="iletisim">
+  <div class="col">
+    <h4>Berber Kemal</h4>
+    <p>Örnek Mahallesi, Çınar Sok. No:14</p>
+    <p>Yenişehir, Mersin</p>
+  </div>
+  <div class="col">
+    <h4>İletişim</h4>
+    <a href="tel:+905000000000">0500 000 00 00</a>
+    <a href="#">Instagram: @berberkemal</a>
+  </div>
+  <div class="col">
+    <h4>Çalışma Saatleri</h4>
+    <p>Pazartesi – Cumartesi: 09:00–20:00</p>
+    <p>Pazar: Kapalı</p>
+  </div>
+</footer>
+
+<script>
+  function guncelleDurum(){
+    const simdi = new Date();
+    const gun = simdi.getDay(); // 0=Pazar
+    const saat = simdi.getHours();
+    const el = document.getElementById('durum');
+    if(gun === 0){
+      el.textContent = "Kapalı";
+    } else if(saat >= 9 && saat < 20){
+      el.textContent = "Açık";
+    } else {
+      el.textContent = "Kapalı";
+    }
+  }
+  guncelleDurum();
+</script>
+
+</body>
+</html>
